@@ -1,0 +1,33 @@
+aid: spanning
+name: Spanning
+description: >-
+  Spanning (by Kaseya) is a SaaS backup and recovery platform providing cloud-to-cloud data protection for Microsoft 365, Google Workspace, and Salesforce.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - SaaS Backup
+  - Data Protection
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: spanning:spanning
+    name: Spanning
+    description: >-
+      Spanning (by Kaseya) is a SaaS backup and recovery platform providing cloud-to-cloud data protection for Microsoft 365, Google Workspace, and Salesforce.
+    humanURL: https://spanning.com
+    tags:
+      - SaaS Backup
+    properties:
+      - type: Documentation
+        url: https://spanning.com/resources
+common:
+  - type: Website
+    url: https://spanning.com
+  - type: Documentation
+    url: https://spanning.com/resources
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
