@@ -1,0 +1,105 @@
+vocabulary:
+  title: Spanning Vocabulary
+  description: >-
+    Domain vocabulary for Spanning (by Kaseya) — a SaaS backup and recovery platform
+    providing cloud-to-cloud data protection for Microsoft 365, Google Workspace, and Salesforce.
+  version: "1.0.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+terms:
+  - term: SaaS Backup
+    definition: >-
+      Cloud-to-cloud backup protecting data stored in SaaS applications (Microsoft 365,
+      Google Workspace, Salesforce) by making copies to a separate, vendor-managed cloud
+      storage layer. Distinct from infrastructure backup.
+    tags:
+      - Core Concept
+
+  - term: Cloud-to-Cloud Backup
+    definition: >-
+      A backup architecture where data is copied from one cloud service (e.g., Microsoft 365)
+      to another cloud storage system (e.g., Spanning's managed storage), without any
+      on-premises infrastructure involved.
+    tags:
+      - Architecture
+
+  - term: License Assignment
+    definition: >-
+      The process of enabling Spanning Backup protection for a specific user. Only assigned
+      users have their data actively backed up. Licenses can be assigned and unassigned
+      via the API or admin portal.
+    tags:
+      - License Management
+
+  - term: Backup Status
+    definition: >-
+      The current protection state of a user in Spanning: ENABLED (actively backed up),
+      DISABLED (not being backed up), or PENDING (license change in progress).
+    tags:
+      - Status
+
+  - term: Export
+    definition: >-
+      A Spanning operation that packages a user's backed-up data into a downloadable archive.
+      Exports can be initiated via API and are used for data recovery, legal holds, or compliance.
+      Export status progresses through PENDING, IN_PROGRESS, COMPLETED, or FAILED.
+    tags:
+      - Recovery
+      - Compliance
+
+  - term: Shared Drive
+    definition: >-
+      In Google Workspace, a shared drive (formerly Team Drive) is a collaborative storage
+      space whose files are owned by the organization rather than individual users. Spanning
+      backs up shared drives separately from personal drives.
+    tags:
+      - Google Workspace
+      - Data Model
+
+  - term: Granular Restore
+    definition: >-
+      The ability to restore specific items (individual emails, files, calendar events,
+      or contacts) rather than requiring a full account restore. Spanning supports
+      granular restore for all protected applications.
+    tags:
+      - Recovery
+
+  - term: Point-in-Time Recovery
+    definition: >-
+      Restoring a user's data to the state it was in at a specific past timestamp.
+      Spanning maintains backup history enabling recovery from any point when a backup exists.
+    tags:
+      - Recovery
+
+  - term: Infinite Retention
+    definition: >-
+      Spanning's backup retention policy of keeping all backup copies indefinitely
+      at no additional cost, regardless of how old the data is.
+    tags:
+      - Policy
+
+  - term: MSP (Managed Service Provider)
+    definition: >-
+      An IT service provider that manages Spanning Backup on behalf of multiple client
+      organizations. Spanning's platform supports MSP multi-tenant management of client backups.
+    tags:
+      - Business Model
+
+  - term: Shared Responsibility Model
+    definition: >-
+      The division of data protection responsibility between a SaaS provider (e.g., Google,
+      Microsoft) and the customer. SaaS providers protect infrastructure but not data.
+      Spanning addresses the customer's side of this model.
+    tags:
+      - Security
+      - Compliance
+
+  - term: API Token
+    definition: >-
+      A static authentication credential for the Spanning Backup API. Generated from
+      Settings > Backup and Security > API Token in the Spanning admin portal and passed
+      as the Authorization header in API requests.
+    tags:
+      - Authentication
+      - Security

@@ -1,0 +1,65 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "spanning": "https://spanning.com/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "User": "schema:Person",
+    "Export": "spanning:Export",
+    "SharedDrive": "spanning:SharedDrive",
+
+    "userKey": "@id",
+    "email": "schema:email",
+    "displayName": "schema:name",
+    "assigned": {
+      "@id": "spanning:licenseAssigned",
+      "@type": "xsd:boolean"
+    },
+    "backupStatus": {
+      "@id": "spanning:backupStatus"
+    },
+    "lastBackup": {
+      "@id": "spanning:lastBackup",
+      "@type": "xsd:dateTime"
+    },
+    "isAdmin": {
+      "@id": "spanning:isAdmin",
+      "@type": "xsd:boolean"
+    },
+    "isSuspended": {
+      "@id": "spanning:isSuspended",
+      "@type": "xsd:boolean"
+    },
+
+    "exportId": "@id",
+    "status": "spanning:status",
+    "initiatedAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "completedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "downloadUrl": {
+      "@id": "schema:contentUrl",
+      "@type": "@id"
+    },
+    "expiresAt": {
+      "@id": "schema:expires",
+      "@type": "xsd:dateTime"
+    },
+    "sizeBytes": {
+      "@id": "schema:contentSize",
+      "@type": "xsd:integer"
+    },
+
+    "driveId": "@id",
+    "name": "schema:name",
+    "backupEnabled": {
+      "@id": "spanning:backupEnabled",
+      "@type": "xsd:boolean"
+    }
+  }
+}

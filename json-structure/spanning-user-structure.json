@@ -1,0 +1,15 @@
+{
+  "title": "Spanning Backup User Structure",
+  "description": "JSON structure documentation for a Spanning Backup user object",
+  "type": "object",
+  "fields": [
+    {"name": "userKey", "type": "string", "required": false, "description": "Unique user identifier (typically email address)"},
+    {"name": "email", "type": "string", "format": "email", "required": false, "description": "User email address"},
+    {"name": "displayName", "type": "string", "required": false, "description": "User display name"},
+    {"name": "assigned", "type": "boolean", "required": false, "description": "Whether user has an active backup license"},
+    {"name": "backupStatus", "type": "string", "required": false, "description": "Backup status: ENABLED, DISABLED, or PENDING"},
+    {"name": "lastBackup", "type": "string", "format": "date-time", "required": false, "description": "Timestamp of most recent backup"},
+    {"name": "isAdmin", "type": "boolean", "required": false, "description": "Whether user is a SaaS admin"},
+    {"name": "isSuspended", "type": "boolean", "required": false, "description": "Whether user's SaaS account is suspended"}
+  ]
+}

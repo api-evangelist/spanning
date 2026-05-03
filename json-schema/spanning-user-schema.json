@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/json-schema/spanning-user-schema.json",
+  "title": "Spanning Backup User",
+  "description": "Schema for a user in the Spanning Backup system with license and backup status",
+  "type": "object",
+  "properties": {
+    "userKey": {
+      "description": "Unique user identifier — typically the user's email address",
+      "type": "string",
+      "example": "john.doe@example.com"
+    },
+    "email": {
+      "description": "User's email address",
+      "type": "string",
+      "format": "email",
+      "example": "john.doe@example.com"
+    },
+    "displayName": {
+      "description": "User's full display name",
+      "type": "string",
+      "example": "John Doe"
+    },
+    "assigned": {
+      "description": "Whether the user has an active Spanning Backup license",
+      "type": "boolean",
+      "example": true
+    },
+    "backupStatus": {
+      "description": "Current backup protection status for the user",
+      "type": "string",
+      "enum": ["ENABLED", "DISABLED", "PENDING"],
+      "example": "ENABLED"
+    },
+    "lastBackup": {
+      "description": "ISO 8601 timestamp of the user's most recent successful backup",
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-05-01T02:30:00Z"
+    },
+    "isAdmin": {
+      "description": "Whether the user is a Google Workspace or Microsoft 365 admin",
+      "type": "boolean"
+    },
+    "isSuspended": {
+      "description": "Whether the user's SaaS account is suspended",
+      "type": "boolean"
+    }
+  },
+  "definitions": {
+    "Export": {
+      "title": "Export",
+      "description": "A Spanning Backup data export job for recovery or compliance",
+      "type": "object",
+      "properties": {
+        "exportId": {
+          "description": "Unique export job identifier",
+          "type": "string"
+        },
+        "status": {
+          "description": "Current export status",
+          "type": "string",
+          "enum": ["PENDING", "IN_PROGRESS", "COMPLETED", "FAILED"]
+        },
+        "userKey": {
+          "description": "User key whose data is being exported",
+          "type": "string"
+        },
+        "initiatedAt": {
+          "description": "When the export was initiated",
+          "type": "string",
+          "format": "date-time"
+        },
+        "completedAt": {
+          "description": "When the export completed",
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "downloadUrl": {
+          "description": "URL to download the exported data (available when COMPLETED)",
+          "type": ["string", "null"],
+          "format": "uri"
+        },
+        "expiresAt": {
+          "description": "When the download URL expires",
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "sizeBytes": {
+          "description": "Size of the export archive in bytes",
+          "type": ["integer", "null"]
+        }
+      }
+    }
+  }
+}

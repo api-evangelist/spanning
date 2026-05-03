@@ -1,0 +1,253 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Spanning Backup for Google Workspace API
+  description: >-
+    RESTful API for managing Spanning Backup for Google Workspace. Supports user license
+    management (assign, unassign, list, get), shared drive backup management, and export
+    operations for backed-up data. Authentication uses API tokens from the Spanning admin portal.
+  tags:
+    - Data Protection
+    - SaaS Backup
+    - Google Workspace
+    - Cloud Backup
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SPANNING_API_TOKEN: SPANNING_API_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: spanning-gws
+      baseUri: https://api.spanningbackup.com
+      description: Spanning Backup for Google Workspace API
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "{{SPANNING_API_TOKEN}}"
+        placement: header
+      resources:
+        - name: users
+          path: /users
+          description: User backup license management
+          operations:
+            - name: list-users
+              method: GET
+              description: List all users and their backup license status
+              inputParameters:
+                - name: pageSize
+                  in: query
+                  type: integer
+                  required: false
+                  description: Number of users per page
+                - name: pageToken
+                  in: query
+                  type: string
+                  required: false
+                  description: Pagination token
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-user
+              method: GET
+              description: Get a single user's backup status
+              inputParameters:
+                - name: userKey
+                  in: path
+                  type: string
+                  required: true
+                  description: User email or unique ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: assign-user
+              method: POST
+              description: Assign a Spanning Backup license to a user
+              inputParameters:
+                - name: userKey
+                  in: path
+                  type: string
+                  required: true
+                  description: User email or unique ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: unassign-user
+              method: POST
+              description: Remove a Spanning Backup license from a user
+              inputParameters:
+                - name: userKey
+                  in: path
+                  type: string
+                  required: true
+                  description: User email or unique ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: shared-drives
+          path: /shared-drives
+          description: Google Workspace shared drive backup management
+          operations:
+            - name: list-shared-drives
+              method: GET
+              description: List all shared drives being backed up
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: export-shared-drive
+              method: POST
+              description: Initiate export of a shared drive's backed-up data
+              inputParameters:
+                - name: driveId
+                  in: path
+                  type: string
+                  required: true
+                  description: Shared drive unique identifier
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: exports
+          path: /exports
+          description: Data export job management
+          operations:
+            - name: list-exports
+              method: GET
+              description: List all export jobs and their status
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: initiate-export
+              method: POST
+              description: Initiate a data export for a user account
+              body:
+                type: json
+                data:
+                  userKey: "{{tools.userKey}}"
+                  includeGmail: "{{tools.includeGmail}}"
+                  includeDrive: "{{tools.includeDrive}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-export
+              method: GET
+              description: Get the status and download URL for an export job
+              inputParameters:
+                - name: exportId
+                  in: path
+                  type: string
+                  required: true
+                  description: Export job unique identifier
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: spanning-gws-rest
+      resources:
+        - path: /v1/users
+          name: users
+          description: Spanning Backup user management
+          operations:
+            - method: GET
+              name: list-users
+              description: List all users with backup license status
+              call: "spanning-gws.list-users"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/exports
+          name: exports
+          description: Export job management
+          operations:
+            - method: GET
+              name: list-exports
+              description: List all export jobs
+              call: "spanning-gws.list-exports"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: initiate-export
+              description: Initiate a data export
+              call: "spanning-gws.initiate-export"
+              with:
+                userKey: "rest.userKey"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: spanning-gws-mcp
+      transport: http
+      tools:
+        - name: list-users
+          description: List all users in Spanning Backup for Google Workspace with their license and backup status
+          hints:
+            readOnly: true
+          call: "spanning-gws.list-users"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: assign-user
+          description: Assign a Spanning Backup license to a Google Workspace user
+          hints:
+            readOnly: false
+          call: "spanning-gws.assign-user"
+          with:
+            userKey: "tools.userKey"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-exports
+          description: List all data export jobs with their current status
+          hints:
+            readOnly: true
+          call: "spanning-gws.list-exports"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: initiate-export
+          description: Initiate a data export for a Google Workspace user account
+          hints:
+            readOnly: false
+          call: "spanning-gws.initiate-export"
+          with:
+            userKey: "tools.userKey"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-export
+          description: Get the status and download URL for a specific export job
+          hints:
+            readOnly: true
+          call: "spanning-gws.get-export"
+          with:
+            exportId: "tools.exportId"
+          outputParameters:
+            - type: object
+              mapping: "$."

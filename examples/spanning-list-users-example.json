@@ -1,0 +1,54 @@
+{
+  "summary": "List Users Example",
+  "description": "Example response from GET /users on the Spanning Backup for Google Workspace API",
+  "request": {
+    "method": "GET",
+    "url": "https://api.spanningbackup.com/users?pageSize=3",
+    "headers": {
+      "Authorization": "YOUR_SPANNING_API_TOKEN",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "users": [
+        {
+          "userKey": "alice@acme.com",
+          "email": "alice@acme.com",
+          "displayName": "Alice Johnson",
+          "assigned": true,
+          "backupStatus": "ENABLED",
+          "lastBackup": "2026-05-01T02:30:00Z",
+          "isAdmin": true,
+          "isSuspended": false
+        },
+        {
+          "userKey": "bob@acme.com",
+          "email": "bob@acme.com",
+          "displayName": "Bob Smith",
+          "assigned": true,
+          "backupStatus": "ENABLED",
+          "lastBackup": "2026-05-01T02:31:00Z",
+          "isAdmin": false,
+          "isSuspended": false
+        },
+        {
+          "userKey": "carol@acme.com",
+          "email": "carol@acme.com",
+          "displayName": "Carol Davis",
+          "assigned": false,
+          "backupStatus": "DISABLED",
+          "lastBackup": null,
+          "isAdmin": false,
+          "isSuspended": false
+        }
+      ],
+      "nextPageToken": "eyJwYWdlIjogMn0=",
+      "totalResults": 247
+    }
+  }
+}
