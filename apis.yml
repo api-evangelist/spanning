@@ -79,6 +79,23 @@ common:
     url: https://github.com/SpanningCloudApps
   - type: Pricing
     url: https://spanning.com/pricing/
+  - type: Integrations
+    url: https://www.spanning.com/partners/
+integrations:
+  - name: google-backup-hero
+  - name: Kaseya Careers
+  - name: Spanning Dashboard that is for compliance
+  - name: cdw
+  - name: tech tech data
+  - name: arrow
+  - name: xertica brand
+  - name: cloudbakers
+  - name: emcsquared brand
+  - name: google partner brand
+  - name: cas brand
+  - name: technology alliance
+  - name: 2024 fall badge
+  - name: best-software-top-50
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
