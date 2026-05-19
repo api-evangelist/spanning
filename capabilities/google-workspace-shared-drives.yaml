@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Spanning Backup for Google Workspace API — Shared Drives
+  description: 'Spanning Backup for Google Workspace API — Shared Drives. 2 operations. Lead operation: List Shared Drives.
+    Self-contained Naftiko capability covering one Spanning business surface.'
+  tags:
+  - Spanning
+  - Shared Drives
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPANNING_API_KEY: SPANNING_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: google-workspace-shared-drives
+    baseUri: https://api.spanningbackup.com
+    description: Spanning Backup for Google Workspace API — Shared Drives business capability. Self-contained, no shared references.
+    resources:
+    - name: shared-drives
+      path: /shared-drives
+      operations:
+      - name: listshareddrives
+        method: GET
+        description: List Shared Drives
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: shared-drives-driveId-export
+      path: /shared-drives/{driveId}/export
+      operations:
+      - name: exportshareddrive
+        method: POST
+        description: Export Shared Drive
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: driveId
+          in: path
+          type: string
+          description: Unique identifier of the shared drive
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.SPANNING_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: google-workspace-shared-drives-rest
+    port: 8080
+    description: REST adapter for Spanning Backup for Google Workspace API — Shared Drives. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/shared-drives
+      name: shared-drives
+      description: REST surface for shared-drives.
+      operations:
+      - method: GET
+        name: listshareddrives
+        description: List Shared Drives
+        call: google-workspace-shared-drives.listshareddrives
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/shared-drives/{driveid}/export
+      name: shared-drives-driveid-export
+      description: REST surface for shared-drives-driveId-export.
+      operations:
+      - method: POST
+        name: exportshareddrive
+        description: Export Shared Drive
+        call: google-workspace-shared-drives.exportshareddrive
+        with:
+          driveId: rest.driveId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: google-workspace-shared-drives-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Spanning Backup for Google Workspace API — Shared Drives. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: list-shared-drives
+      description: List Shared Drives
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: google-workspace-shared-drives.listshareddrives
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-shared-drive
+      description: Export Shared Drive
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: google-workspace-shared-drives.exportshareddrive
+      with:
+        driveId: tools.driveId
+      outputParameters:
+      - type: object
+        mapping: $.
