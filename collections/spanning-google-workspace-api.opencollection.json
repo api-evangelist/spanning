@@ -1,0 +1,245 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spanning Backup for Google Workspace API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spanningbackup.com/users",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of users to return per page"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response to get the next page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all users in the Spanning Backup account with their backup status and license information"
+        },
+        {
+          "info": {
+            "name": "Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spanningbackup.com/users/:userKey",
+            "params": [
+              {
+                "name": "userKey",
+                "value": "",
+                "type": "path",
+                "description": "User's email address or unique user ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns backup status and license information for a single user"
+        },
+        {
+          "info": {
+            "name": "Assign User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spanningbackup.com/users/:userKey/assign",
+            "params": [
+              {
+                "name": "userKey",
+                "value": "",
+                "type": "path",
+                "description": "User's email address or unique user ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Assigns a Spanning Backup license to the specified user, enabling backup protection for their account"
+        },
+        {
+          "info": {
+            "name": "Unassign User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spanningbackup.com/users/:userKey/unassign",
+            "params": [
+              {
+                "name": "userKey",
+                "value": "",
+                "type": "path",
+                "description": "User's email address or unique user ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes the Spanning Backup license from the specified user, disabling backup protection"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Shared Drives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shared Drives",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spanningbackup.com/shared-drives",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all Google Workspace shared drives being backed up by Spanning"
+        },
+        {
+          "info": {
+            "name": "Export Shared Drive",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spanningbackup.com/shared-drives/:driveId/export",
+            "params": [
+              {
+                "name": "driveId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the shared drive"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Initiates an export of all backed-up data from the specified shared drive"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Exports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Exports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spanningbackup.com/exports",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all export jobs with their current status"
+        },
+        {
+          "info": {
+            "name": "Initiate Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spanningbackup.com/exports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Initiates a new data export for a user account or specified data range"
+        },
+        {
+          "info": {
+            "name": "Get Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spanningbackup.com/exports/:exportId",
+            "params": [
+              {
+                "name": "exportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the export job"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the status and details of a specific export job, including download URL when complete"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
