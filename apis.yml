@@ -6,7 +6,7 @@ description: >-
   daily backups, unlimited on-demand backups, infinite retention, and granular point-in-time restore. Spanning exposes
   RESTful APIs for managing user licenses and exporting backed-up account data for Google Workspace and Microsoft 365.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Data Protection
   - SaaS Backup
