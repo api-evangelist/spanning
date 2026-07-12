@@ -69,6 +69,10 @@ apis:
       - type: GitHubRepository
         url: https://github.com/SpanningCloudApps/SB365-Powershell
 common:
+  - type: DomainSecurity
+    url: security/spanning-domain-security.yml
+  - type: Authentication
+    url: authentication/spanning-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/spanning-cloud-apps
   - type: Website

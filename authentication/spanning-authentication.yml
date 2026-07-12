@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/spanning-google-workspace-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Spanning API token obtained from Settings > Backup and Security > API Token in
+    the admin portal
+  sources:
+  - openapi/spanning-google-workspace-api-openapi.yml
