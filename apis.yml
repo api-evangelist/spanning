@@ -69,6 +69,8 @@ apis:
       - type: GitHubRepository
         url: https://github.com/SpanningCloudApps/SB365-Powershell
 common:
+  - type: AgenticAccess
+    url: agentic-access/spanning-agentic-access.yml
   - type: DomainSecurity
     url: security/spanning-domain-security.yml
   - type: Authentication
