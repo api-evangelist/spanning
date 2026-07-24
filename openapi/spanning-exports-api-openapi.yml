@@ -1,0 +1,176 @@
+openapi: 3.0.3
+info:
+  title: Spanning Backup for Google Workspace Exports API
+  description: RESTful API for managing Spanning Backup for Google Workspace. Provides operations for managing user backup licenses (assign, unassign, list, get), shared drive backup management, and initiating and retrieving data exports. Authentication uses API tokens obtained from Settings > Backup and Security > API Token in the Spanning admin portal.
+  version: 1.0.0
+  contact:
+    name: Spanning Support
+    url: https://spanning.com/support/
+  termsOfService: https://spanning.com/terms-of-service/
+servers:
+- url: https://api.spanningbackup.com
+  description: Spanning Backup for Google Workspace API
+tags:
+- name: Exports
+  description: Data export management operations
+paths:
+  /exports:
+    get:
+      operationId: listExports
+      summary: List Exports
+      description: Returns a list of all export jobs with their current status
+      tags:
+      - Exports
+      security:
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Successful response with list of exports
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: initiateExport
+      summary: Initiate Export
+      description: Initiates a new data export for a user account or specified data range
+      tags:
+      - Exports
+      security:
+      - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRequest'
+      responses:
+        '202':
+          description: Export successfully initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Export'
+        '400':
+          description: Invalid export request
+        '401':
+          description: Unauthorized
+  /exports/{exportId}:
+    get:
+      operationId: getExport
+      summary: Get Export
+      description: Returns the status and details of a specific export job, including download URL when complete
+      tags:
+      - Exports
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: exportId
+        in: path
+        description: Unique identifier of the export job
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with export details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Export'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Export not found
+components:
+  schemas:
+    ExportList:
+      type: object
+      description: List of export jobs
+      properties:
+        exports:
+          type: array
+          description: Array of export objects
+          items:
+            $ref: '#/components/schemas/Export'
+    Export:
+      type: object
+      description: A Spanning Backup data export job
+      properties:
+        exportId:
+          type: string
+          description: Unique identifier of the export job
+          example: exp_abc123
+        status:
+          type: string
+          description: Current export status
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETED
+          - FAILED
+          example: COMPLETED
+        userKey:
+          type: string
+          description: User key whose data is being exported
+          example: john.doe@example.com
+        initiatedAt:
+          type: string
+          format: date-time
+          description: When the export was initiated
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the export completed (null if still in progress)
+        downloadUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to download the exported data archive (available when COMPLETED)
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the download URL expires
+        sizeBytes:
+          type: integer
+          nullable: true
+          description: Size of the export archive in bytes
+    ExportRequest:
+      type: object
+      description: Request body for initiating a data export
+      required:
+      - userKey
+      properties:
+        userKey:
+          type: string
+          description: Email address or user ID to export data for
+          example: john.doe@example.com
+        includeGmail:
+          type: boolean
+          description: Whether to include Gmail data in the export
+          default: true
+        includeDrive:
+          type: boolean
+          description: Whether to include Google Drive data in the export
+          default: true
+        includeCalendar:
+          type: boolean
+          description: Whether to include Google Calendar data in the export
+          default: true
+        includeContacts:
+          type: boolean
+          description: Whether to include Google Contacts data in the export
+          default: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Spanning API token obtained from Settings > Backup and Security > API Token in the admin portal
+externalDocs:
+  description: Spanning Backup API Reference
+  url: https://api.spanningbackup.com/index.html

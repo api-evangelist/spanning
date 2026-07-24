@@ -1,0 +1,144 @@
+openapi: 3.0.3
+info:
+  title: Spanning Backup for Google Workspace Exports Shared Drives API
+  description: RESTful API for managing Spanning Backup for Google Workspace. Provides operations for managing user backup licenses (assign, unassign, list, get), shared drive backup management, and initiating and retrieving data exports. Authentication uses API tokens obtained from Settings > Backup and Security > API Token in the Spanning admin portal.
+  version: 1.0.0
+  contact:
+    name: Spanning Support
+    url: https://spanning.com/support/
+  termsOfService: https://spanning.com/terms-of-service/
+servers:
+- url: https://api.spanningbackup.com
+  description: Spanning Backup for Google Workspace API
+tags:
+- name: Shared Drives
+  description: Shared drive backup and export operations
+paths:
+  /shared-drives:
+    get:
+      operationId: listSharedDrives
+      summary: List Shared Drives
+      description: Returns a list of all Google Workspace shared drives being backed up by Spanning
+      tags:
+      - Shared Drives
+      security:
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Successful response with list of shared drives
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedDriveList'
+        '401':
+          description: Unauthorized
+  /shared-drives/{driveId}/export:
+    post:
+      operationId: exportSharedDrive
+      summary: Export Shared Drive
+      description: Initiates an export of all backed-up data from the specified shared drive
+      tags:
+      - Shared Drives
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: driveId
+        in: path
+        description: Unique identifier of the shared drive
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Export successfully initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Export'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Shared drive not found
+components:
+  schemas:
+    SharedDriveList:
+      type: object
+      description: List of shared drives backed up by Spanning
+      properties:
+        sharedDrives:
+          type: array
+          description: Array of shared drive objects
+          items:
+            $ref: '#/components/schemas/SharedDrive'
+    Export:
+      type: object
+      description: A Spanning Backup data export job
+      properties:
+        exportId:
+          type: string
+          description: Unique identifier of the export job
+          example: exp_abc123
+        status:
+          type: string
+          description: Current export status
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - COMPLETED
+          - FAILED
+          example: COMPLETED
+        userKey:
+          type: string
+          description: User key whose data is being exported
+          example: john.doe@example.com
+        initiatedAt:
+          type: string
+          format: date-time
+          description: When the export was initiated
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the export completed (null if still in progress)
+        downloadUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to download the exported data archive (available when COMPLETED)
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the download URL expires
+        sizeBytes:
+          type: integer
+          nullable: true
+          description: Size of the export archive in bytes
+    SharedDrive:
+      type: object
+      description: A Google Workspace shared drive backed up by Spanning
+      properties:
+        driveId:
+          type: string
+          description: Unique identifier of the shared drive
+          example: 0AHYMDxxxxxxxxxxx
+        name:
+          type: string
+          description: Display name of the shared drive
+          example: Marketing Assets
+        backupEnabled:
+          type: boolean
+          description: Whether backup is currently enabled for this shared drive
+        lastBackup:
+          type: string
+          format: date-time
+          description: Timestamp of the most recent backup
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Spanning API token obtained from Settings > Backup and Security > API Token in the admin portal
+externalDocs:
+  description: Spanning Backup API Reference
+  url: https://api.spanningbackup.com/index.html

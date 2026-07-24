@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: Spanning Backup for Google Workspace Exports Users API
+  description: RESTful API for managing Spanning Backup for Google Workspace. Provides operations for managing user backup licenses (assign, unassign, list, get), shared drive backup management, and initiating and retrieving data exports. Authentication uses API tokens obtained from Settings > Backup and Security > API Token in the Spanning admin portal.
+  version: 1.0.0
+  contact:
+    name: Spanning Support
+    url: https://spanning.com/support/
+  termsOfService: https://spanning.com/terms-of-service/
+servers:
+- url: https://api.spanningbackup.com
+  description: Spanning Backup for Google Workspace API
+tags:
+- name: Users
+  description: User backup license management operations
+paths:
+  /users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: Returns a list of all users in the Spanning Backup account with their backup status and license information
+      tags:
+      - Users
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: pageSize
+        in: query
+        description: Number of users to return per page
+        required: false
+        schema:
+          type: integer
+          default: 100
+      - name: pageToken
+        in: query
+        description: Pagination token from a previous response to get the next page
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with paginated user list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+        '401':
+          description: Unauthorized — invalid or missing API token
+        '403':
+          description: Forbidden — insufficient permissions
+  /users/{userKey}:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: Returns backup status and license information for a single user
+      tags:
+      - Users
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: userKey
+        in: path
+        description: User's email address or unique user ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User not found
+  /users/{userKey}/assign:
+    post:
+      operationId: assignUser
+      summary: Assign User
+      description: Assigns a Spanning Backup license to the specified user, enabling backup protection for their account
+      tags:
+      - Users
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: userKey
+        in: path
+        description: User's email address or unique user ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User successfully assigned a backup license
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User not found
+        '409':
+          description: User already assigned
+  /users/{userKey}/unassign:
+    post:
+      operationId: unassignUser
+      summary: Unassign User
+      description: Removes the Spanning Backup license from the specified user, disabling backup protection
+      tags:
+      - Users
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: userKey
+        in: path
+        description: User's email address or unique user ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User successfully unassigned from backup
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User not found
+components:
+  schemas:
+    User:
+      type: object
+      description: A user in the Spanning Backup account
+      properties:
+        userKey:
+          type: string
+          description: Unique user identifier (email address or user ID)
+          example: john.doe@example.com
+        email:
+          type: string
+          format: email
+          description: User's email address
+          example: john.doe@example.com
+        displayName:
+          type: string
+          description: User's display name
+          example: John Doe
+        assigned:
+          type: boolean
+          description: Whether the user has an active Spanning Backup license
+          example: true
+        backupStatus:
+          type: string
+          description: Current backup status for the user
+          enum:
+          - ENABLED
+          - DISABLED
+          - PENDING
+          example: ENABLED
+        lastBackup:
+          type: string
+          format: date-time
+          description: Timestamp of the user's most recent backup
+          example: '2026-05-01T02:30:00Z'
+        isAdmin:
+          type: boolean
+          description: Whether the user is a Google Workspace admin
+        isSuspended:
+          type: boolean
+          description: Whether the user's Google Workspace account is suspended
+    UserList:
+      type: object
+      description: Paginated list of Spanning Backup users
+      properties:
+        users:
+          type: array
+          description: Array of user objects
+          items:
+            $ref: '#/components/schemas/User'
+        nextPageToken:
+          type: string
+          nullable: true
+          description: Token for retrieving the next page of results
+        totalResults:
+          type: integer
+          description: Total number of users in the account
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Spanning API token obtained from Settings > Backup and Security > API Token in the admin portal
+externalDocs:
+  description: Spanning Backup API Reference
+  url: https://api.spanningbackup.com/index.html
