@@ -1,0 +1,423 @@
+openapi: 3.0.3
+info:
+  title: Spanning Backup for Google Workspace API
+  description: >-
+    RESTful API for managing Spanning Backup for Google Workspace. Provides operations
+    for managing user backup licenses (assign, unassign, list, get), shared drive backup
+    management, and initiating and retrieving data exports. Authentication uses API tokens
+    obtained from Settings > Backup and Security > API Token in the Spanning admin portal.
+  version: "1.0.0"
+  contact:
+    name: Spanning Support
+    url: https://spanning.com/support/
+  termsOfService: https://spanning.com/terms-of-service/
+externalDocs:
+  description: Spanning Backup API Reference
+  url: https://api.spanningbackup.com/index.html
+servers:
+  - url: https://api.spanningbackup.com
+    description: Spanning Backup for Google Workspace API
+tags:
+  - name: Users
+    description: User backup license management operations
+  - name: Shared Drives
+    description: Shared drive backup and export operations
+  - name: Exports
+    description: Data export management operations
+paths:
+  /users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: Returns a list of all users in the Spanning Backup account with their backup status and license information
+      tags:
+        - Users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          description: Number of users to return per page
+          required: false
+          schema:
+            type: integer
+            default: 100
+        - name: pageToken
+          in: query
+          description: Pagination token from a previous response to get the next page
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with paginated user list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+        '401':
+          description: Unauthorized — invalid or missing API token
+        '403':
+          description: Forbidden — insufficient permissions
+  /users/{userKey}:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: Returns backup status and license information for a single user
+      tags:
+        - Users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: userKey
+          in: path
+          description: User's email address or unique user ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User not found
+  /users/{userKey}/assign:
+    post:
+      operationId: assignUser
+      summary: Assign User
+      description: Assigns a Spanning Backup license to the specified user, enabling backup protection for their account
+      tags:
+        - Users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: userKey
+          in: path
+          description: User's email address or unique user ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User successfully assigned a backup license
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User not found
+        '409':
+          description: User already assigned
+  /users/{userKey}/unassign:
+    post:
+      operationId: unassignUser
+      summary: Unassign User
+      description: Removes the Spanning Backup license from the specified user, disabling backup protection
+      tags:
+        - Users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: userKey
+          in: path
+          description: User's email address or unique user ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User successfully unassigned from backup
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+        '404':
+          description: User not found
+  /shared-drives:
+    get:
+      operationId: listSharedDrives
+      summary: List Shared Drives
+      description: Returns a list of all Google Workspace shared drives being backed up by Spanning
+      tags:
+        - Shared Drives
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Successful response with list of shared drives
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedDriveList'
+        '401':
+          description: Unauthorized
+  /shared-drives/{driveId}/export:
+    post:
+      operationId: exportSharedDrive
+      summary: Export Shared Drive
+      description: Initiates an export of all backed-up data from the specified shared drive
+      tags:
+        - Shared Drives
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: driveId
+          in: path
+          description: Unique identifier of the shared drive
+          required: true
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Export successfully initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Export'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Shared drive not found
+  /exports:
+    get:
+      operationId: listExports
+      summary: List Exports
+      description: Returns a list of all export jobs with their current status
+      tags:
+        - Exports
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Successful response with list of exports
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: initiateExport
+      summary: Initiate Export
+      description: Initiates a new data export for a user account or specified data range
+      tags:
+        - Exports
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRequest'
+      responses:
+        '202':
+          description: Export successfully initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Export'
+        '400':
+          description: Invalid export request
+        '401':
+          description: Unauthorized
+  /exports/{exportId}:
+    get:
+      operationId: getExport
+      summary: Get Export
+      description: Returns the status and details of a specific export job, including download URL when complete
+      tags:
+        - Exports
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: exportId
+          in: path
+          description: Unique identifier of the export job
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with export details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Export'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Export not found
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Spanning API token obtained from Settings > Backup and Security > API Token in the admin portal
+  schemas:
+    UserList:
+      type: object
+      description: Paginated list of Spanning Backup users
+      properties:
+        users:
+          type: array
+          description: Array of user objects
+          items:
+            $ref: '#/components/schemas/User'
+        nextPageToken:
+          type: string
+          nullable: true
+          description: Token for retrieving the next page of results
+        totalResults:
+          type: integer
+          description: Total number of users in the account
+    User:
+      type: object
+      description: A user in the Spanning Backup account
+      properties:
+        userKey:
+          type: string
+          description: Unique user identifier (email address or user ID)
+          example: "john.doe@example.com"
+        email:
+          type: string
+          format: email
+          description: User's email address
+          example: "john.doe@example.com"
+        displayName:
+          type: string
+          description: User's display name
+          example: "John Doe"
+        assigned:
+          type: boolean
+          description: Whether the user has an active Spanning Backup license
+          example: true
+        backupStatus:
+          type: string
+          description: Current backup status for the user
+          enum: [ENABLED, DISABLED, PENDING]
+          example: ENABLED
+        lastBackup:
+          type: string
+          format: date-time
+          description: Timestamp of the user's most recent backup
+          example: "2026-05-01T02:30:00Z"
+        isAdmin:
+          type: boolean
+          description: Whether the user is a Google Workspace admin
+        isSuspended:
+          type: boolean
+          description: Whether the user's Google Workspace account is suspended
+    SharedDriveList:
+      type: object
+      description: List of shared drives backed up by Spanning
+      properties:
+        sharedDrives:
+          type: array
+          description: Array of shared drive objects
+          items:
+            $ref: '#/components/schemas/SharedDrive'
+    SharedDrive:
+      type: object
+      description: A Google Workspace shared drive backed up by Spanning
+      properties:
+        driveId:
+          type: string
+          description: Unique identifier of the shared drive
+          example: "0AHYMDxxxxxxxxxxx"
+        name:
+          type: string
+          description: Display name of the shared drive
+          example: "Marketing Assets"
+        backupEnabled:
+          type: boolean
+          description: Whether backup is currently enabled for this shared drive
+        lastBackup:
+          type: string
+          format: date-time
+          description: Timestamp of the most recent backup
+    ExportList:
+      type: object
+      description: List of export jobs
+      properties:
+        exports:
+          type: array
+          description: Array of export objects
+          items:
+            $ref: '#/components/schemas/Export'
+    Export:
+      type: object
+      description: A Spanning Backup data export job
+      properties:
+        exportId:
+          type: string
+          description: Unique identifier of the export job
+          example: "exp_abc123"
+        status:
+          type: string
+          description: Current export status
+          enum: [PENDING, IN_PROGRESS, COMPLETED, FAILED]
+          example: COMPLETED
+        userKey:
+          type: string
+          description: User key whose data is being exported
+          example: "john.doe@example.com"
+        initiatedAt:
+          type: string
+          format: date-time
+          description: When the export was initiated
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the export completed (null if still in progress)
+        downloadUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to download the exported data archive (available when COMPLETED)
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the download URL expires
+        sizeBytes:
+          type: integer
+          nullable: true
+          description: Size of the export archive in bytes
+    ExportRequest:
+      type: object
+      description: Request body for initiating a data export
+      required:
+        - userKey
+      properties:
+        userKey:
+          type: string
+          description: Email address or user ID to export data for
+          example: "john.doe@example.com"
+        includeGmail:
+          type: boolean
+          description: Whether to include Gmail data in the export
+          default: true
+        includeDrive:
+          type: boolean
+          description: Whether to include Google Drive data in the export
+          default: true
+        includeCalendar:
+          type: boolean
+          description: Whether to include Google Calendar data in the export
+          default: true
+        includeContacts:
+          type: boolean
+          description: Whether to include Google Contacts data in the export
+          default: true
