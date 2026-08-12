@@ -132,6 +132,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/vocabulary/spanning-vocabulary.yml
 common:
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/SpanningCloudApps/SB365-Powershell/blob/master/LICENSE
   - type: AgenticAccess
     url: agentic-access/spanning-agentic-access.yml
   - type: DomainSecurity
