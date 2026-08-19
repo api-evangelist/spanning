@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spanning Backup for Google Workspace Exports API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Exports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Exports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spanningbackup.com/exports",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all export jobs with their current status"
+        },
+        {
+          "info": {
+            "name": "Initiate Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spanningbackup.com/exports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Initiates a new data export for a user account or specified data range"
+        },
+        {
+          "info": {
+            "name": "Get Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spanningbackup.com/exports/:exportId",
+            "params": [
+              {
+                "name": "exportId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the export job"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the status and details of a specific export job, including download URL when complete"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,582 @@
+{
+  "item": [
+    {
+      "id": "cf4e30c8-cf4d-4301-b80e-e4d9fc052d3f",
+      "name": "Exports",
+      "description": {
+        "content": "Data export management operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cb1ac520-2fe8-4286-8958-a93adce6255b",
+          "name": "List Exports",
+          "request": {
+            "name": "List Exports",
+            "description": {
+              "content": "Returns a list of all export jobs with their current status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a7f2cf97-c010-4b8a-9bb8-2301d4ae4d90",
+              "name": "Successful response with list of exports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exports\": [\n    {\n      \"exportId\": \"exp_abc123\",\n      \"status\": \"COMPLETED\",\n      \"userKey\": \"john.doe@example.com\",\n      \"initiatedAt\": \"1953-12-26T05:31:21.282Z\",\n      \"completedAt\": \"1992-02-20T06:39:26.563Z\",\n      \"downloadUrl\": \"http://hrZzrHlXsBGBzCGztllVHomMhhvJOGVIM.peL3wLrgTIeU2de.f5qWTzWnkv8NfNqgKgERleFqMPbuJMEPEhFRpPZn0WhtVqf\",\n      \"expiresAt\": \"1991-03-21T21:11:09.339Z\",\n      \"sizeBytes\": 4088\n    },\n    {\n      \"exportId\": \"exp_abc123\",\n      \"status\": \"COMPLETED\",\n      \"userKey\": \"john.doe@example.com\",\n      \"initiatedAt\": \"1949-09-06T02:49:58.211Z\",\n      \"completedAt\": \"1953-09-05T01:03:44.870Z\",\n      \"downloadUrl\": \"http://zCTIVwfRPnweAD.jsmN3wuC8xsfGkVuiutY+ZGRx7m6ykpsS1DWi-iALSEbwwrIiANQ.u,aTHEZW\",\n      \"expiresAt\": \"1957-11-26T05:17:16.150Z\",\n      \"sizeBytes\": 8981\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "460920f8-9afc-4615-9831-1f609b9990b5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "784ea516-9660-401b-aa5e-c62bea357aff",
+          "name": "Initiate Export",
+          "request": {
+            "name": "Initiate Export",
+            "description": {
+              "content": "Initiates a new data export for a user account or specified data range",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userKey\": \"<string>\",\n  \"includeGmail\": true,\n  \"includeDrive\": true,\n  \"includeCalendar\": true,\n  \"includeContacts\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1835f6d9-9667-41f5-8211-cef62ac6d27c",
+              "name": "Export successfully initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userKey\": \"john.doe@example.com\",\n  \"includeGmail\": true,\n  \"includeDrive\": true,\n  \"includeCalendar\": true,\n  \"includeContacts\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exportId\": \"exp_abc123\",\n  \"status\": \"COMPLETED\",\n  \"userKey\": \"john.doe@example.com\",\n  \"initiatedAt\": \"1987-01-29T19:39:26.318Z\",\n  \"completedAt\": \"1969-11-04T11:34:44.243Z\",\n  \"downloadUrl\": \"http://FAWQxzjuEIyKGwreGQDsGExumSFvdale.yexevMndMcizKByROh6+saFlwq2z8hIEadoxcLfvLE+RMsDD4wPiv5-MLwHYOWPUoEkwld\",\n  \"expiresAt\": \"1980-09-04T16:31:45.767Z\",\n  \"sizeBytes\": 6838\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38e5a1f9-df39-4760-833a-65b21a062a7d",
+              "name": "Invalid export request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userKey\": \"john.doe@example.com\",\n  \"includeGmail\": true,\n  \"includeDrive\": true,\n  \"includeCalendar\": true,\n  \"includeContacts\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b311680f-b0d1-49c8-81aa-3b5d1b5b9be4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userKey\": \"john.doe@example.com\",\n  \"includeGmail\": true,\n  \"includeDrive\": true,\n  \"includeCalendar\": true,\n  \"includeContacts\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c2ade5a-22da-4b31-855c-610463eac1b6",
+          "name": "Get Export",
+          "request": {
+            "name": "Get Export",
+            "description": {
+              "content": "Returns the status and details of a specific export job, including download URL when complete",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exports",
+                ":exportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "exportId",
+                  "description": "(Required) Unique identifier of the export job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98c77dc9-fe9c-4ac8-937b-9ebba7f37b09",
+              "name": "Successful response with export details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exportId",
+                      "description": "(Required) Unique identifier of the export job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exportId\": \"exp_abc123\",\n  \"status\": \"COMPLETED\",\n  \"userKey\": \"john.doe@example.com\",\n  \"initiatedAt\": \"1987-01-29T19:39:26.318Z\",\n  \"completedAt\": \"1969-11-04T11:34:44.243Z\",\n  \"downloadUrl\": \"http://FAWQxzjuEIyKGwreGQDsGExumSFvdale.yexevMndMcizKByROh6+saFlwq2z8hIEadoxcLfvLE+RMsDD4wPiv5-MLwHYOWPUoEkwld\",\n  \"expiresAt\": \"1980-09-04T16:31:45.767Z\",\n  \"sizeBytes\": 6838\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18f1cabd-4ce4-44da-9057-9056e5a2a381",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exportId",
+                      "description": "(Required) Unique identifier of the export job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "73c50dbf-74a2-426f-953e-87c128505ce9",
+              "name": "Export not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports",
+                    ":exportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exportId",
+                      "description": "(Required) Unique identifier of the export job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spanningbackup.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e570fee7-10f2-43d1-b76a-9f0ac7688ce9",
+    "name": "Spanning Backup for Google Workspace Exports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for managing Spanning Backup for Google Workspace. Provides operations for managing user backup licenses (assign, unassign, list, get), shared drive backup management, and initiating and retrieving data exports. Authentication uses API tokens obtained from Settings > Backup and Security > API Token in the Spanning admin portal.\n\nContact Support:\n Name: Spanning Support",
+      "type": "text/plain"
+    }
+  }
+}

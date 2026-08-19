@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spanning Backup for Google Workspace Exports Shared Drives API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shared Drives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shared Drives",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spanningbackup.com/shared-drives",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all Google Workspace shared drives being backed up by Spanning"
+        },
+        {
+          "info": {
+            "name": "Export Shared Drive",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spanningbackup.com/shared-drives/:driveId/export",
+            "params": [
+              {
+                "name": "driveId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the shared drive"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Initiates an export of all backed-up data from the specified shared drive"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

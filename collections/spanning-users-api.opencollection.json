@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spanning Backup for Google Workspace Exports Users API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spanningbackup.com/users",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of users to return per page"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response to get the next page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all users in the Spanning Backup account with their backup status and license information"
+        },
+        {
+          "info": {
+            "name": "Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spanningbackup.com/users/:userKey",
+            "params": [
+              {
+                "name": "userKey",
+                "value": "",
+                "type": "path",
+                "description": "User's email address or unique user ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns backup status and license information for a single user"
+        },
+        {
+          "info": {
+            "name": "Assign User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spanningbackup.com/users/:userKey/assign",
+            "params": [
+              {
+                "name": "userKey",
+                "value": "",
+                "type": "path",
+                "description": "User's email address or unique user ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Assigns a Spanning Backup license to the specified user, enabling backup protection for their account"
+        },
+        {
+          "info": {
+            "name": "Unassign User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spanningbackup.com/users/:userKey/unassign",
+            "params": [
+              {
+                "name": "userKey",
+                "value": "",
+                "type": "path",
+                "description": "User's email address or unique user ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes the Spanning Backup license from the specified user, disabling backup protection"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

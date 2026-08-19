@@ -1,0 +1,377 @@
+{
+  "item": [
+    {
+      "id": "8e2e0a93-dcdd-4eb7-9f5d-4b93a940c5b5",
+      "name": "Shared Drives",
+      "description": {
+        "content": "Shared drive backup and export operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f16b00f-e90c-47b0-9883-253a52c24bba",
+          "name": "List Shared Drives",
+          "request": {
+            "name": "List Shared Drives",
+            "description": {
+              "content": "Returns a list of all Google Workspace shared drives being backed up by Spanning",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-drives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "37cbd1d3-e2d6-43b3-a5d4-c762d95ddd22",
+              "name": "Successful response with list of shared drives",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-drives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sharedDrives\": [\n    {\n      \"driveId\": \"0AHYMDxxxxxxxxxxx\",\n      \"name\": \"Marketing Assets\",\n      \"backupEnabled\": true,\n      \"lastBackup\": \"2010-05-02T11:01:22.438Z\"\n    },\n    {\n      \"driveId\": \"0AHYMDxxxxxxxxxxx\",\n      \"name\": \"Marketing Assets\",\n      \"backupEnabled\": false,\n      \"lastBackup\": \"2014-03-01T20:49:12.471Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a550e372-a108-45ec-aa01-6933dc08a92b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-drives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "373735f7-211d-474c-b7b4-97439939137e",
+          "name": "Export Shared Drive",
+          "request": {
+            "name": "Export Shared Drive",
+            "description": {
+              "content": "Initiates an export of all backed-up data from the specified shared drive",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-drives",
+                ":driveId",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "driveId",
+                  "description": "(Required) Unique identifier of the shared drive"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "01cb0f07-ca5f-45f4-972f-1e7f6a019635",
+              "name": "Export successfully initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-drives",
+                    ":driveId",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driveId",
+                      "description": "(Required) Unique identifier of the shared drive"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"exportId\": \"exp_abc123\",\n  \"status\": \"COMPLETED\",\n  \"userKey\": \"john.doe@example.com\",\n  \"initiatedAt\": \"1977-03-14T06:34:48.928Z\",\n  \"completedAt\": \"1970-03-19T01:12:03.140Z\",\n  \"downloadUrl\": \"http://HjoHYBqrztiWZzKwOtpTpsaenbUbYflLi.pidVYX2VqZKqz,OSYLFSIH\",\n  \"expiresAt\": \"1964-04-30T21:14:29.560Z\",\n  \"sizeBytes\": 9912\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30d4c3ff-46ad-416d-bb8b-ce8498cef670",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-drives",
+                    ":driveId",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driveId",
+                      "description": "(Required) Unique identifier of the shared drive"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd1fd902-8649-4d7c-b24b-baa4b22623df",
+              "name": "Shared drive not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-drives",
+                    ":driveId",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driveId",
+                      "description": "(Required) Unique identifier of the shared drive"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spanningbackup.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4df97c3e-a9f0-41d9-9963-c5390016692f",
+    "name": "Spanning Backup for Google Workspace Exports Shared Drives API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for managing Spanning Backup for Google Workspace. Provides operations for managing user backup licenses (assign, unassign, list, get), shared drive backup management, and initiating and retrieving data exports. Authentication uses API tokens obtained from Settings > Backup and Security > API Token in the Spanning admin portal.\n\nContact Support:\n Name: Spanning Support",
+      "type": "text/plain"
+    }
+  }
+}
