@@ -24,6 +24,13 @@ tags:
   - Data Protection
   - SaaS Backup
   - Cloud Backup
+  - Microsoft-365
+  - Google Workspace
+  - Salesforce
+tags_raw:
+  - Data Protection
+  - SaaS Backup
+  - Cloud Backup
   - Microsoft 365
   - Google Workspace
   - Salesforce
@@ -43,6 +50,11 @@ apis:
   tags:
   - Data Protection
   - SaaS Backup
+  - Microsoft-365
+  - Cloud Backup
+  tags_raw:
+  - Data Protection
+  - SaaS Backup
   - Microsoft 365
   - Cloud Backup
   properties:
@@ -56,6 +68,8 @@ apis:
   humanURL: https://spanning.com/products/google-workspace-backup/
   baseURL: https://api.spanningbackup.com
   tags:
+  - Export
+  tags_raw:
   - Exports
   properties:
   - type: OpenAPI
@@ -110,6 +124,8 @@ apis:
   humanURL: https://spanning.com/products/google-workspace-backup/
   baseURL: https://api.spanningbackup.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
