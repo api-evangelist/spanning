@@ -6,6 +6,20 @@ description: >-
   daily backups, unlimited on-demand backups, infinite retention, and granular point-in-time restore. Spanning exposes
   RESTful APIs for managing user licenses and exporting backed-up account data for Google Workspace and Microsoft 365.
 type: Index
+deliveryModel:
+  model: open-core
+  license: Apache-2.0
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -148,6 +162,10 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/vocabulary/spanning-vocabulary.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/SpanningCloudApps/SB365-Powershell/issues
+  - type: Releases
+    url: https://github.com/SpanningCloudApps/SB365-Powershell/releases
   - type: License
     name: Apache-2.0
     url: https://github.com/SpanningCloudApps/SB365-Powershell/blob/master/LICENSE
