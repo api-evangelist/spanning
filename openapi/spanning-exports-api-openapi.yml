@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Spanning Backup for Google Workspace Exports API
   description: RESTful API for managing Spanning Backup for Google Workspace. Provides operations for managing user backup licenses (assign, unassign, list, get), shared drive backup management, and initiating and retrieving data exports. Authentication uses API tokens obtained from Settings > Backup and Security > API Token in the Spanning admin portal.
@@ -121,23 +121,27 @@ components:
           format: date-time
           description: When the export was initiated
         completedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: When the export completed (null if still in progress)
         downloadUrl:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
           description: URL to download the exported data archive (available when COMPLETED)
         expiresAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: When the download URL expires
         sizeBytes:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Size of the export archive in bytes
     ExportRequest:
       type: object

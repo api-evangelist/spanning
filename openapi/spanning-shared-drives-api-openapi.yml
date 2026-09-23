@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Spanning Backup for Google Workspace Exports Shared Drives API
+  title: Spanning Backup for Google Workspace Shared Drives API
   description: RESTful API for managing Spanning Backup for Google Workspace. Provides operations for managing user backup licenses (assign, unassign, list, get), shared drive backup management, and initiating and retrieving data exports. Authentication uses API tokens obtained from Settings > Backup and Security > API Token in the Spanning admin portal.
   version: 1.0.0
   contact:
@@ -61,15 +61,6 @@ paths:
           description: Shared drive not found
 components:
   schemas:
-    SharedDriveList:
-      type: object
-      description: List of shared drives backed up by Spanning
-      properties:
-        sharedDrives:
-          type: array
-          description: Array of shared drive objects
-          items:
-            $ref: '#/components/schemas/SharedDrive'
     Export:
       type: object
       description: A Spanning Backup data export job
@@ -96,24 +87,37 @@ components:
           format: date-time
           description: When the export was initiated
         completedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: When the export completed (null if still in progress)
         downloadUrl:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
           description: URL to download the exported data archive (available when COMPLETED)
         expiresAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: When the download URL expires
         sizeBytes:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Size of the export archive in bytes
+    SharedDriveList:
+      type: object
+      description: List of shared drives backed up by Spanning
+      properties:
+        sharedDrives:
+          type: array
+          description: Array of shared drive objects
+          items:
+            $ref: '#/components/schemas/SharedDrive'
     SharedDrive:
       type: object
       description: A Google Workspace shared drive backed up by Spanning
