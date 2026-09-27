@@ -39,7 +39,7 @@ tags:
   - Data Protection
   - SaaS Backup
   - Cloud Backup
-  - Microsoft-365
+  - Microsoft 365
   - Google Workspace
   - Salesforce
 tags_raw:
@@ -49,6 +49,7 @@ tags_raw:
   - Microsoft 365
   - Google Workspace
   - Salesforce
+  - Microsoft-365
 url: https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/apis.yml
 created: '2026-03-27'
 modified: '2026-05-19'
@@ -65,13 +66,14 @@ apis:
   tags:
   - Data Protection
   - SaaS Backup
-  - Microsoft-365
+  - Microsoft 365
   - Cloud Backup
   tags_raw:
   - Data Protection
   - SaaS Backup
   - Microsoft 365
   - Cloud Backup
+  - Microsoft-365
   properties:
   - type: Documentation
     url: https://o365-docs.spanningbackup.com/

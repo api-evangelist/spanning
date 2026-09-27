@@ -61,6 +61,25 @@ paths:
           description: Shared drive not found
 components:
   schemas:
+    SharedDrive:
+      type: object
+      description: A Google Workspace shared drive backed up by Spanning
+      properties:
+        driveId:
+          type: string
+          description: Unique identifier of the shared drive
+          example: 0AHYMDxxxxxxxxxxx
+        name:
+          type: string
+          description: Display name of the shared drive
+          example: Marketing Assets
+        backupEnabled:
+          type: boolean
+          description: Whether backup is currently enabled for this shared drive
+        lastBackup:
+          type: string
+          format: date-time
+          description: Timestamp of the most recent backup
     Export:
       type: object
       description: A Spanning Backup data export job
@@ -118,25 +137,6 @@ components:
           description: Array of shared drive objects
           items:
             $ref: '#/components/schemas/SharedDrive'
-    SharedDrive:
-      type: object
-      description: A Google Workspace shared drive backed up by Spanning
-      properties:
-        driveId:
-          type: string
-          description: Unique identifier of the shared drive
-          example: 0AHYMDxxxxxxxxxxx
-        name:
-          type: string
-          description: Display name of the shared drive
-          example: Marketing Assets
-        backupEnabled:
-          type: boolean
-          description: Whether backup is currently enabled for this shared drive
-        lastBackup:
-          type: string
-          format: date-time
-          description: Timestamp of the most recent backup
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
