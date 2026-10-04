@@ -133,6 +133,23 @@ paths:
           description: User not found
 components:
   schemas:
+    UserList:
+      type: object
+      description: Paginated list of Spanning Backup users
+      properties:
+        users:
+          type: array
+          description: Array of user objects
+          items:
+            $ref: '#/components/schemas/User'
+        nextPageToken:
+          type:
+          - string
+          - 'null'
+          description: Token for retrieving the next page of results
+        totalResults:
+          type: integer
+          description: Total number of users in the account
     User:
       type: object
       description: A user in the Spanning Backup account
@@ -173,23 +190,6 @@ components:
         isSuspended:
           type: boolean
           description: Whether the user's Google Workspace account is suspended
-    UserList:
-      type: object
-      description: Paginated list of Spanning Backup users
-      properties:
-        users:
-          type: array
-          description: Array of user objects
-          items:
-            $ref: '#/components/schemas/User'
-        nextPageToken:
-          type:
-          - string
-          - 'null'
-          description: Token for retrieving the next page of results
-        totalResults:
-          type: integer
-          description: Total number of users in the account
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

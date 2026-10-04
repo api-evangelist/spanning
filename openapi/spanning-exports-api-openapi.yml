@@ -86,6 +86,41 @@ paths:
           description: Export not found
 components:
   schemas:
+    ExportList:
+      type: object
+      description: List of export jobs
+      properties:
+        exports:
+          type: array
+          description: Array of export objects
+          items:
+            $ref: '#/components/schemas/Export'
+    ExportRequest:
+      type: object
+      description: Request body for initiating a data export
+      required:
+      - userKey
+      properties:
+        userKey:
+          type: string
+          description: Email address or user ID to export data for
+          example: john.doe@example.com
+        includeGmail:
+          type: boolean
+          description: Whether to include Gmail data in the export
+          default: true
+        includeDrive:
+          type: boolean
+          description: Whether to include Google Drive data in the export
+          default: true
+        includeCalendar:
+          type: boolean
+          description: Whether to include Google Calendar data in the export
+          default: true
+        includeContacts:
+          type: boolean
+          description: Whether to include Google Contacts data in the export
+          default: true
     Export:
       type: object
       description: A Spanning Backup data export job
@@ -134,41 +169,6 @@ components:
           - integer
           - 'null'
           description: Size of the export archive in bytes
-    ExportRequest:
-      type: object
-      description: Request body for initiating a data export
-      required:
-      - userKey
-      properties:
-        userKey:
-          type: string
-          description: Email address or user ID to export data for
-          example: john.doe@example.com
-        includeGmail:
-          type: boolean
-          description: Whether to include Gmail data in the export
-          default: true
-        includeDrive:
-          type: boolean
-          description: Whether to include Google Drive data in the export
-          default: true
-        includeCalendar:
-          type: boolean
-          description: Whether to include Google Calendar data in the export
-          default: true
-        includeContacts:
-          type: boolean
-          description: Whether to include Google Contacts data in the export
-          default: true
-    ExportList:
-      type: object
-      description: List of export jobs
-      properties:
-        exports:
-          type: array
-          description: Array of export objects
-          items:
-            $ref: '#/components/schemas/Export'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
