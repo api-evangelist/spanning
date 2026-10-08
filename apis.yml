@@ -165,6 +165,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/vocabulary/spanning-vocabulary.yml
 common:
+  - type: Plans
+    url: plans/spanning-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/spanning-rate-limits.yml
+  - type: FinOps
+    url: finops/spanning-finops.yml
   - type: IssueTracker
     url: https://github.com/SpanningCloudApps/SB365-Powershell/issues
   - type: Releases
