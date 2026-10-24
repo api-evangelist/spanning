@@ -1,925 +1,869 @@
 {
+  "info": {
+    "_postman_id": "879f2e23-8a93-4a60-8cff-8fe7248c019f",
+    "name": "Spanning Backup for Google Workspace Users API",
+    "description": "RESTful API for managing Spanning Backup for Google Workspace. Provides operations for managing user backup licenses (assign, unassign, list, get), shared drive backup management, and initiating and retrieving data exports. Authentication uses API tokens obtained from Settings > Backup and Security > API Token in the Spanning admin portal.\n\nContact Support:\n Name: Spanning Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:26:40.000Z",
+    "updatedAt": "2026-10-22T01:26:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-879f2e23-8a93-4a60-8cff-8fe7248c019f"
+  },
   "item": [
     {
-      "id": "96456380-d506-4894-869d-081cf3d145dd",
-      "name": "Users",
-      "description": {
-        "content": "User backup license management operations",
-        "type": "text/plain"
-      },
+      "name": "users",
       "item": [
         {
-          "id": "fb21b1c0-7bca-4ece-81e4-94a5649df00f",
-          "name": "List Users",
-          "request": {
-            "name": "List Users",
-            "description": {
-              "content": "Returns a list of all users in the Spanning Backup account with their backup status and license information",
-              "type": "text/plain"
+          "name": "{userKey}",
+          "item": [
+            {
+              "name": "assign",
+              "item": [
+                {
+                  "name": "Assign User",
+                  "id": "092d4946-0b75-4fa5-bb5c-71e933f8c6a9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userKey/assign",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userKey",
+                        "assign"
+                      ],
+                      "variable": [
+                        {
+                          "id": "06c8d4bc-4c1a-4a7f-8e39-917ba03f2e6b",
+                          "key": "userKey",
+                          "value": "<string>",
+                          "description": "(Required) User's email address or unique user ID"
+                        }
+                      ]
+                    },
+                    "description": "Assigns a Spanning Backup license to the specified user, enabling backup protection for their account"
+                  },
+                  "response": [
+                    {
+                      "id": "7ab4d777-7c41-4c32-ab6e-26401f419602",
+                      "name": "User successfully assigned a backup license",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userKey/assign",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userKey",
+                            "assign"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"userKey\": \"<string>\",\n  \"email\": \"<email>\",\n  \"displayName\": \"<string>\",\n  \"assigned\": \"<boolean>\",\n  \"backupStatus\": \"PENDING\",\n  \"lastBackup\": \"<dateTime>\",\n  \"isAdmin\": \"<boolean>\",\n  \"isSuspended\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-22T01:26:40.000Z",
+                      "updatedAt": "2026-10-22T01:26:40.000Z",
+                      "uid": "35240-7ab4d777-7c41-4c32-ab6e-26401f419602"
+                    },
+                    {
+                      "id": "a4e87f63-22fe-4cd7-8bd0-85d51a4f22eb",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userKey/assign",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userKey",
+                            "assign"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:40.000Z",
+                      "updatedAt": "2026-10-22T01:26:40.000Z",
+                      "uid": "35240-a4e87f63-22fe-4cd7-8bd0-85d51a4f22eb"
+                    },
+                    {
+                      "id": "d95788e2-7aba-4be0-bbba-b3143ad63253",
+                      "name": "User not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userKey/assign",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userKey",
+                            "assign"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:40.000Z",
+                      "updatedAt": "2026-10-22T01:26:40.000Z",
+                      "uid": "35240-d95788e2-7aba-4be0-bbba-b3143ad63253"
+                    },
+                    {
+                      "id": "7863599f-b8d1-4e0a-b1d5-0504b358479e",
+                      "name": "User already assigned",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userKey/assign",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userKey",
+                            "assign"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:40.000Z",
+                      "updatedAt": "2026-10-22T01:26:40.000Z",
+                      "uid": "35240-7863599f-b8d1-4e0a-b1d5-0504b358479e"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:40.000Z",
+                  "updatedAt": "2026-10-22T01:26:40.000Z",
+                  "uid": "35240-092d4946-0b75-4fa5-bb5c-71e933f8c6a9"
+                }
+              ],
+              "id": "addf43b3-019a-4b1c-a8c2-08acc582fa28",
+              "createdAt": "2026-10-22T01:26:40.000Z",
+              "updatedAt": "2026-10-22T01:26:40.000Z",
+              "uid": "35240-addf43b3-019a-4b1c-a8c2-08acc582fa28"
             },
+            {
+              "name": "unassign",
+              "item": [
+                {
+                  "name": "Unassign User",
+                  "id": "56a848bc-5a0f-4ccf-87ce-45d14a611afa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userKey/unassign",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userKey",
+                        "unassign"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d52897f7-63a1-4cbb-bf6b-2d6abd276889",
+                          "key": "userKey",
+                          "value": "<string>",
+                          "description": "(Required) User's email address or unique user ID"
+                        }
+                      ]
+                    },
+                    "description": "Removes the Spanning Backup license from the specified user, disabling backup protection"
+                  },
+                  "response": [
+                    {
+                      "id": "3fc7dd33-c783-4a71-87db-bcf40992ccd1",
+                      "name": "User successfully unassigned from backup",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userKey/unassign",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userKey",
+                            "unassign"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"userKey\": \"<string>\",\n  \"email\": \"<email>\",\n  \"displayName\": \"<string>\",\n  \"assigned\": \"<boolean>\",\n  \"backupStatus\": \"PENDING\",\n  \"lastBackup\": \"<dateTime>\",\n  \"isAdmin\": \"<boolean>\",\n  \"isSuspended\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-22T01:26:40.000Z",
+                      "updatedAt": "2026-10-22T01:26:40.000Z",
+                      "uid": "35240-3fc7dd33-c783-4a71-87db-bcf40992ccd1"
+                    },
+                    {
+                      "id": "39acae2a-4cac-46b9-bb89-294bda7a3abf",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userKey/unassign",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userKey",
+                            "unassign"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:40.000Z",
+                      "updatedAt": "2026-10-22T01:26:40.000Z",
+                      "uid": "35240-39acae2a-4cac-46b9-bb89-294bda7a3abf"
+                    },
+                    {
+                      "id": "e4b54cfb-fc0f-4ebc-bfbb-587be6772809",
+                      "name": "User not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userKey/unassign",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userKey",
+                            "unassign"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:40.000Z",
+                      "updatedAt": "2026-10-22T01:26:40.000Z",
+                      "uid": "35240-e4b54cfb-fc0f-4ebc-bfbb-587be6772809"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:40.000Z",
+                  "updatedAt": "2026-10-22T01:26:40.000Z",
+                  "uid": "35240-56a848bc-5a0f-4ccf-87ce-45d14a611afa"
+                }
+              ],
+              "id": "36f9f0dd-2329-49f8-adb2-b59c3e64b294",
+              "createdAt": "2026-10-22T01:26:40.000Z",
+              "updatedAt": "2026-10-22T01:26:40.000Z",
+              "uid": "35240-36f9f0dd-2329-49f8-adb2-b59c3e64b294"
+            },
+            {
+              "name": "Get User",
+              "id": "43e8fdd2-d438-47de-a394-0bf288dfcdae",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:userKey",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":userKey"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1c9cf609-33ee-4956-9acb-c9a4c1a892d0",
+                      "key": "userKey",
+                      "value": "<string>",
+                      "description": "(Required) User's email address or unique user ID"
+                    }
+                  ]
+                },
+                "description": "Returns backup status and license information for a single user"
+              },
+              "response": [
+                {
+                  "id": "90bf021a-d53f-44f6-9c22-f9ecacbf6736",
+                  "name": "Successful response with user details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userKey",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userKey"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"userKey\": \"<string>\",\n  \"email\": \"<email>\",\n  \"displayName\": \"<string>\",\n  \"assigned\": \"<boolean>\",\n  \"backupStatus\": \"PENDING\",\n  \"lastBackup\": \"<dateTime>\",\n  \"isAdmin\": \"<boolean>\",\n  \"isSuspended\": \"<boolean>\"\n}",
+                  "createdAt": "2026-10-22T01:26:40.000Z",
+                  "updatedAt": "2026-10-22T01:26:40.000Z",
+                  "uid": "35240-90bf021a-d53f-44f6-9c22-f9ecacbf6736"
+                },
+                {
+                  "id": "db9a918b-5932-4079-a1b2-f795ec28f126",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userKey",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userKey"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:26:40.000Z",
+                  "updatedAt": "2026-10-22T01:26:40.000Z",
+                  "uid": "35240-db9a918b-5932-4079-a1b2-f795ec28f126"
+                },
+                {
+                  "id": "53b7a124-ee38-4600-ab8b-c09c7d540489",
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userKey",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userKey"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:26:40.000Z",
+                  "updatedAt": "2026-10-22T01:26:40.000Z",
+                  "uid": "35240-53b7a124-ee38-4600-ab8b-c09c7d540489"
+                }
+              ],
+              "createdAt": "2026-10-22T01:26:40.000Z",
+              "updatedAt": "2026-10-22T01:26:40.000Z",
+              "uid": "35240-43e8fdd2-d438-47de-a394-0bf288dfcdae"
+            }
+          ],
+          "id": "ac1dcc0e-399b-410a-b61d-b7cb90a9a86d",
+          "createdAt": "2026-10-22T01:26:40.000Z",
+          "updatedAt": "2026-10-22T01:26:40.000Z",
+          "uid": "35240-ac1dcc0e-399b-410a-b61d-b7cb90a9a86d"
+        },
+        {
+          "name": "List Users",
+          "id": "c3b5f652-2e98-4983-89d6-56b019bcd485",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/users?pageSize=100&pageToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "users"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Number of users to return per page",
                   "key": "pageSize",
-                  "value": "100",
-                  "description": "Number of users to return per page"
+                  "value": "100"
                 },
                 {
-                  "disabled": false,
+                  "description": "Pagination token from a previous response to get the next page",
                   "key": "pageToken",
-                  "value": "<string>",
-                  "description": "Pagination token from a previous response to get the next page"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
+                  "value": "<string>"
                 }
               ]
-            }
+            },
+            "description": "Returns a list of all users in the Spanning Backup account with their backup status and license information"
           },
           "response": [
             {
-              "id": "4d367e3f-3713-4eb8-9543-06acb64cd744",
+              "id": "7a67116a-84fe-440d-8c1c-c71d1695f986",
               "name": "Successful response with paginated user list",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "users"
-                  ],
+                  "raw": "{{baseUrl}}/users?pageSize=100&pageToken=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "users"
+                  ],
                   "query": [
                     {
+                      "description": "Number of users to return per page",
                       "key": "pageSize",
                       "value": "100"
                     },
                     {
+                      "description": "Pagination token from a previous response to get the next page",
                       "key": "pageToken",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"users\": [\n    {\n      \"userKey\": \"john.doe@example.com\",\n      \"email\": \"john.doe@example.com\",\n      \"displayName\": \"John Doe\",\n      \"assigned\": true,\n      \"backupStatus\": \"ENABLED\",\n      \"lastBackup\": \"2026-05-01T02:30:00Z\",\n      \"isAdmin\": true,\n      \"isSuspended\": false\n    },\n    {\n      \"userKey\": \"john.doe@example.com\",\n      \"email\": \"john.doe@example.com\",\n      \"displayName\": \"John Doe\",\n      \"assigned\": true,\n      \"backupStatus\": \"ENABLED\",\n      \"lastBackup\": \"2026-05-01T02:30:00Z\",\n      \"isAdmin\": true,\n      \"isSuspended\": true\n    }\n  ],\n  \"nextPageToken\": \"string\",\n  \"totalResults\": 8245\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"users\": [\n    {\n      \"userKey\": \"<string>\",\n      \"email\": \"<email>\",\n      \"displayName\": \"<string>\",\n      \"assigned\": \"<boolean>\",\n      \"backupStatus\": \"ENABLED\",\n      \"lastBackup\": \"<dateTime>\",\n      \"isAdmin\": \"<boolean>\",\n      \"isSuspended\": \"<boolean>\"\n    },\n    {\n      \"userKey\": \"<string>\",\n      \"email\": \"<email>\",\n      \"displayName\": \"<string>\",\n      \"assigned\": \"<boolean>\",\n      \"backupStatus\": \"ENABLED\",\n      \"lastBackup\": \"<dateTime>\",\n      \"isAdmin\": \"<boolean>\",\n      \"isSuspended\": \"<boolean>\"\n    }\n  ],\n  \"nextPageToken\": \"<string,null>\",\n  \"totalResults\": \"<integer>\"\n}",
+              "createdAt": "2026-10-22T01:26:40.000Z",
+              "updatedAt": "2026-10-22T01:26:40.000Z",
+              "uid": "35240-7a67116a-84fe-440d-8c1c-c71d1695f986"
             },
             {
-              "id": "dfbceb94-73ae-42c0-90db-cb756ddc8d9d",
-              "name": "Unauthorized — invalid or missing API token",
+              "id": "44af531f-84aa-4fd3-aaae-dfe959fa6a4b",
+              "name": "Unauthorized \u2014 invalid or missing API token",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "pageSize",
-                      "value": "100"
-                    },
-                    {
-                      "key": "pageToken",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "Authorization",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/users?pageSize=100&pageToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of users to return per page",
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Pagination token from a previous response to get the next page",
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:26:40.000Z",
+              "updatedAt": "2026-10-22T01:26:40.000Z",
+              "uid": "35240-44af531f-84aa-4fd3-aaae-dfe959fa6a4b"
             },
             {
-              "id": "513a3f28-9afb-4952-9411-15e4a3f57786",
-              "name": "Forbidden — insufficient permissions",
+              "id": "a69706d1-f907-4f96-b142-1da078a9702d",
+              "name": "Forbidden \u2014 insufficient permissions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "pageSize",
-                      "value": "100"
-                    },
-                    {
-                      "key": "pageToken",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "Authorization",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/users?pageSize=100&pageToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of users to return per page",
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Pagination token from a previous response to get the next page",
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:26:40.000Z",
+              "updatedAt": "2026-10-22T01:26:40.000Z",
+              "uid": "35240-a69706d1-f907-4f96-b142-1da078a9702d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "84f62c92-d446-479b-a424-3aa1ccc5bc5d",
-          "name": "Get User",
-          "request": {
-            "name": "Get User",
-            "description": {
-              "content": "Returns backup status and license information for a single user",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                ":userKey"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userKey",
-                  "description": "(Required) User's email address or unique user ID"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "d4b72f81-f8d5-42b3-ac0a-cb0de0d753ee",
-              "name": "Successful response with user details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userKey"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userKey",
-                      "description": "(Required) User's email address or unique user ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"userKey\": \"john.doe@example.com\",\n  \"email\": \"john.doe@example.com\",\n  \"displayName\": \"John Doe\",\n  \"assigned\": true,\n  \"backupStatus\": \"ENABLED\",\n  \"lastBackup\": \"2026-05-01T02:30:00Z\",\n  \"isAdmin\": true,\n  \"isSuspended\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cfd6e620-3d32-45bf-85a8-9b66a76a406d",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userKey"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userKey",
-                      "description": "(Required) User's email address or unique user ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "313298c7-19a3-4265-9d77-6cda95fe9664",
-              "name": "User not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userKey"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userKey",
-                      "description": "(Required) User's email address or unique user ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ccebbb2c-4f7f-4cc1-a145-bb10b8fb192e",
-          "name": "Assign User",
-          "request": {
-            "name": "Assign User",
-            "description": {
-              "content": "Assigns a Spanning Backup license to the specified user, enabling backup protection for their account",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                ":userKey",
-                "assign"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userKey",
-                  "description": "(Required) User's email address or unique user ID"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "8cbaf39b-3309-4dc7-93ac-efc58f3ef01b",
-              "name": "User successfully assigned a backup license",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userKey",
-                    "assign"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userKey",
-                      "description": "(Required) User's email address or unique user ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"userKey\": \"john.doe@example.com\",\n  \"email\": \"john.doe@example.com\",\n  \"displayName\": \"John Doe\",\n  \"assigned\": true,\n  \"backupStatus\": \"ENABLED\",\n  \"lastBackup\": \"2026-05-01T02:30:00Z\",\n  \"isAdmin\": true,\n  \"isSuspended\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4b0fe36f-2878-43ab-b487-25515ada57fe",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userKey",
-                    "assign"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userKey",
-                      "description": "(Required) User's email address or unique user ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "27eba009-a909-4ba4-9afe-db6019b991ea",
-              "name": "User not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userKey",
-                    "assign"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userKey",
-                      "description": "(Required) User's email address or unique user ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "049a75fb-abf9-4a6b-b259-dbbfce04f17a",
-              "name": "User already assigned",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userKey",
-                    "assign"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userKey",
-                      "description": "(Required) User's email address or unique user ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Conflict",
-              "code": 409,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "416b53dd-bc4d-44e9-b89a-406ac115c64b",
-          "name": "Unassign User",
-          "request": {
-            "name": "Unassign User",
-            "description": {
-              "content": "Removes the Spanning Backup license from the specified user, disabling backup protection",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                ":userKey",
-                "unassign"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userKey",
-                  "description": "(Required) User's email address or unique user ID"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "b3ee8627-f07f-47a3-b2a3-093157e0685a",
-              "name": "User successfully unassigned from backup",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userKey",
-                    "unassign"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userKey",
-                      "description": "(Required) User's email address or unique user ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"userKey\": \"john.doe@example.com\",\n  \"email\": \"john.doe@example.com\",\n  \"displayName\": \"John Doe\",\n  \"assigned\": true,\n  \"backupStatus\": \"ENABLED\",\n  \"lastBackup\": \"2026-05-01T02:30:00Z\",\n  \"isAdmin\": true,\n  \"isSuspended\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f2075180-845d-4a0d-868c-6c4d926e45b6",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userKey",
-                    "unassign"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userKey",
-                      "description": "(Required) User's email address or unique user ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "fe4b52f0-4b5d-4bce-8c4d-ba7e7f9e95eb",
-              "name": "User not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userKey",
-                    "unassign"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userKey",
-                      "description": "(Required) User's email address or unique user ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:26:40.000Z",
+          "updatedAt": "2026-10-22T01:26:40.000Z",
+          "uid": "35240-c3b5f652-2e98-4983-89d6-56b019bcd485"
         }
       ],
-      "event": []
+      "id": "4929c938-530f-496c-9c59-e4fe9bbb8cbf",
+      "createdAt": "2026-10-22T01:26:40.000Z",
+      "updatedAt": "2026-10-22T01:26:40.000Z",
+      "uid": "35240-4929c938-530f-496c-9c59-e4fe9bbb8cbf"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.spanningbackup.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.spanningbackup.com"
     }
-  ],
-  "info": {
-    "_postman_id": "74395854-7267-4283-aee7-537f85b1ad68",
-    "name": "Spanning Backup for Google Workspace Exports Users API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for managing Spanning Backup for Google Workspace. Provides operations for managing user backup licenses (assign, unassign, list, get), shared drive backup management, and initiating and retrieving data exports. Authentication uses API tokens obtained from Settings > Backup and Security > API Token in the Spanning admin portal.\n\nContact Support:\n Name: Spanning Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
