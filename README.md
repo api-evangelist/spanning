@@ -1,4 +1,4 @@
-# Spanning (spanning)
+# Spanning
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,86 +66,158 @@
 
 Spanning (by Kaseya) is a SaaS backup and recovery platform providing cloud-to-cloud data protection for Microsoft 365, Google Workspace, and Salesforce. It protects over 24,000 organizations and 2.5 million users with automated daily backups, unlimited on-demand backups, infinite retention, and granular point-in-time restore. Spanning exposes RESTful APIs for managing user licenses and exporting backed-up account data for Google Workspace and Microsoft 365.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/apis.yml)
+**Areas:** Data Protection · SaaS Backup · Cloud Backup · Microsoft 365 · Google Workspace · Salesforce
 
-## Scope
+## Spanning on APIs.io
 
-- **Type:** Index
+Everything profiled for Spanning is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/spanning/](https://apis.io/providers/spanning/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Data Protection
-- SaaS Backup
-- Cloud Backup
-- Microsoft 365
-- Google Workspace
-- Salesforce
+- [Spanning Backup for Microsoft 365 API](https://apis.io/apis/spanning/spanning-microsoft365-api/) — RESTful API for managing Spanning Backup for Microsoft 365. Region-specific endpoints (US, EU, AP, CA, UK) for user license management and data export…
+- [Spanning Exports API](https://apis.io/apis/spanning/spanning-exports-api/) — Data export management operations
+- [Spanning Shared Drives API](https://apis.io/apis/spanning/spanning-shared-drives-api/) — Shared drive backup and export operations
+- [Spanning Users API](https://apis.io/apis/spanning/spanning-users-api/) — User backup license management operations
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-27
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Spanning Backup for Google Workspace API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-RESTful API for managing Spanning Backup for Google Workspace. Supports user license management (assign, unassign, list, get), shared drives backup management (list, export), and export operations (initiate, list, get). Authentication uses API tokens obtained from the Spanning admin portal Settings tab.
+- [Spanning Agentic Access](https://apis.io/agentic-access/spanning/spanning-agentic-access/)
 
-- **Human URL:** [https://spanning.com/products/google-workspace-backup/](https://spanning.com/products/google-workspace-backup/)
-- **Base URL:** `https://api.spanningbackup.com`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Data Protection
-- SaaS Backup
-- Google Workspace
-- Cloud Backup
+- [Spanning Backup User](https://apis.io/schemas/spanning/spanning-user/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://api.spanningbackup.com/index.html)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/openapi/spanning-google-workspace-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/rules/spanning-rules.yml)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/json-schema/spanning-user-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/json-structure/spanning-user-structure.json)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/json-ld/spanning-context.jsonld)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/spanning/refs/heads/main/vocabulary/spanning-vocabulary.yml)
-- [Postman Collection](collections/spanning-google-workspace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spanning-google-workspace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### Spanning Backup for Microsoft 365 API
+- [Spanning User Structure](https://apis.io/json-structure/spanning/spanning-user-structure/)
 
-RESTful API for managing Spanning Backup for Microsoft 365. Region-specific endpoints (US, EU, AP, CA, UK) for user license management and data export operations. Authentication uses API tokens obtained from the Spanning admin portal.
+#### JSON-LD (1)
 
-- **Human URL:** [https://spanning.com/products/microsoft-365-backup/](https://spanning.com/products/microsoft-365-backup/)
-- **Base URL:** `https://o365-us.spanningbackup.com`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Spanning Context](https://apis.io/jsonld/spanning/spanning-context/)
 
-- Data Protection
-- SaaS Backup
-- Microsoft 365
-- Cloud Backup
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://o365-docs.spanningbackup.com/)
-- [GitHub Repository](https://github.com/SpanningCloudApps/SB365-Powershell)
-- [Postman Collection](collections/spanning-google-workspace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spanning-google-workspace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Spanning Vocabulary](https://apis.io/vocabularies/spanning/spanning-vocabulary/)
 
-## Common Properties
+#### Examples (1)
 
-- [LinkedIn](https://www.linkedin.com/company/spanning-cloud-apps)
+Example requests and responses.
+
+- [Spanning List Users Example](https://apis.io/examples/spanning/spanning-list-users-example/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Spanning Backup for Google Workspace Exports API](https://apis.io/collections/spanning/open-spanning-exports-api/)
+- [Spanning Backup for Google Workspace API](https://apis.io/collections/spanning/open-spanning-google-workspace-api/)
+- [Spanning Backup for Google Workspace Exports Shared Drives API](https://apis.io/collections/spanning/open-spanning-shared-drives-api/)
+- [Spanning Backup for Google Workspace Exports Users API](https://apis.io/collections/spanning/open-spanning-users-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Spanning — jsonschema rules](https://apis.io/rules/spanning/spanning-jsonschema-spectral-rules/)
+- [Spanning API Rules](https://apis.io/rules/spanning/spanning-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Spanning Authentication](https://apis.io/security/spanning/spanning-authentication/)
+- [Spanning Domain Security](https://apis.io/security/spanning/spanning-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Spanning Plans Pricing](https://apis.io/plans/spanning/spanning-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Spanning Rate Limits](https://apis.io/rate-limits/spanning/spanning-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Spanning Finops](https://apis.io/finops/spanning/spanning-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://spanning.com)
 - [Documentation](https://spanning.com/resources)
-- [API Reference](https://api.spanningbackup.com/index.html)
-- [Git Hub](https://github.com/SpanningCloudApps)
+- [API reference](https://api.spanningbackup.com/index.html)
 - [Pricing](https://spanning.com/pricing/)
-- [Integrations](https://www.spanning.com/partners/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 61.4 |
+| Contract governance | 23.5 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/spanning/](https://apis.io/providers/spanning/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Spanning: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/spanning/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
